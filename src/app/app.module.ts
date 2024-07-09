@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShadowUserComponent } from './shadow/shadow-user/shadow-user.component';
+import { ShadowUserComponent } from '../core/shadow/shadow-user/shadow-user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ShadowUserComponent } from './shadow/shadow-user/shadow-user.component'
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ShadowUserComponent
+    ShadowUserComponent,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

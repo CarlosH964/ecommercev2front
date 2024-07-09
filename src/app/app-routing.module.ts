@@ -9,11 +9,15 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./shadow/shadow-user.module').then(m => m.ShadowUserModule)
+    loadChildren: () => import('../core/shadow/shadow-user.module').then(m => m.ShadowUserModule)
   },
   {
     path: 'validation',
     loadChildren: () => import('./validation/validation.module').then(m => m.ValidationModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('../core/admin/admin.module').then(m => m.AdminModule)
   }
 ];
 

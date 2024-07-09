@@ -39,4 +39,9 @@ export class Serviceservice {
       Object
     );
   }
+
+  login(email: string, password: string): Observable<any> {
+    const loginRequest = { email, password };
+    return this.http.post<any>(`${this.baseUrl}/Users/login`, loginRequest);
+  }
 }
