@@ -1,1 +1,21 @@
-<p>modal-create works!</p>
+<div class="bg-white w-full h-full">
+    <form [formGroup]="ObjectForm" class="grid p-8 gap-8">
+      <p class="text-center">Create Item</p>
+      <div class="flex gap-8">
+        <input type="number" placeholder="Code Object" formControlName="objectId" required>
+        <input type="text" placeholder="Name" formControlName="name" required/>
+      </div>
+      <input type="text" placeholder="Description" formControlName="description" required/>
+      <input type="text" placeholder="Customer" formControlName="customer" required/>
+      <div class="flex">
+        <input type="number" placeholder="Price" formControlName="price" required/>
+        <input type="number" placeholder="Stock" formControlName="stock" required/>
+      </div>
+      <input type="file" required (change)="onFileChange($event)">
+  </form>
+    <div class="flex gap-20 justify-center">
+      <button class="bg-green-400 rounded-lg p-2 mb-8 hover:cursor-pointer" (click)="addObject()">Submit</button>
+      <button class="bg-red-400 rounded-lg p-2 mb-8 hover:cursor-pointer" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+  

@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ModalCreateComponent } from './modal-create/modal-create.component';
 import { ModalEditComponent } from './modal-edit/modal-edit.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const adminroutes: Routes = [
   {
@@ -14,13 +15,13 @@ const adminroutes: Routes = [
 
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    ModalCreateComponent,
-    ModalEditComponent
-  ],
+  declarations: [],
   imports: [
+    ModalEditComponent,
+    ModalCreateComponent,
+    MatDialogModule,
     CommonModule,
+    DashboardComponent,
     RouterModule.forChild(adminroutes)
   ]
 })
