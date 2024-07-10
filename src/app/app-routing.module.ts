@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { ProtecRoutesGuard } from 'src/service/can-deactivate.guard';
 const routes: Routes = [
   {
     path: '',
@@ -13,11 +13,12 @@ const routes: Routes = [
   },
   {
     path: 'validation',
-    loadChildren: () => import('./validation/validation.module').then(m => m.ValidationModule)
+    loadChildren: () => import('./validation/validation.module').then(m => m.ValidationModule),
   },
   {
     path: 'admin',
-    loadChildren: () => import('../core/admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('../core/admin/admin.module').then(m => m.AdminModule),
+    canActivate: [ProtecRoutesGuard]
   }
 ];
 
