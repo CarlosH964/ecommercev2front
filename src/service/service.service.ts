@@ -25,6 +25,10 @@ export class Serviceservice {
     return this.http.get<any[]>(`${this.baseUrl}/ObjectsEcommerces`);
   }
 
+  getObjectById(id: number): Observable<ItemApi> {
+    return this.http.get<ItemApi>(`${this.baseUrl}/ObjectsEcommerces/${id}`);
+  }
+
   createObject(data?: any): Observable<any> {
     return this.http.post<any[]>(`${this.baseUrl}/ObjectsEcommerces`, data);
   }

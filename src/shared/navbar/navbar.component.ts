@@ -12,4 +12,8 @@ export class NavbarComponent {
   navigateToLogin() {
     this.router.navigate(['/validation/login']);
   }
+
+  navigateToHome() {
+    this.router.navigate(['/home']);
+  }
 }

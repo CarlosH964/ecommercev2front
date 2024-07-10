@@ -8,16 +8,21 @@ const routes: Routes = [
   {
     path: '',
     component: ShadowUserComponent
+  },
+  {
+    path: 'item/:id',
+    component: ShowItemComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    ShowItemComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    ShowItemComponent,
+    ShadowUserComponent,
+    RouterModule.forChild(routes),
   ]
 })
 export class ShadowUserModule { }
