@@ -7,35 +7,41 @@
         <h2 class="font-bold text-center text-5xl">Welcome Future User</h2>
         <h2 class="font-semibold text-center text-xl">Complete the inputs for register you</h2>
       </div>
-      <div class="border-2 px-6 py-6 rounded-xl">
+      <form class="border-2 px-6 py-6 rounded-xl" [formGroup]="ObjectForm">
         <div class="grid gap-2 mb-4">
             <h2>Name:</h2>
           <input
             class="rounded-md p-2 w-full border-2"
             type="text"
             placeholder="Name"
+            formControlName="name"
+            required
           />
           <h2>Email:</h2>
           <input
             class="rounded-md p-2 w-full border-2"
             type="email"
             placeholder="Email address"
+            formControlName="email"
+            required
           />
           <h2>Password:</h2>
           <input
             class="rounded-md p-2 w-full border-2"
             type="password"
             placeholder="password"
+            formControlName="password"
+            required
           />
         </div>
         <button
         class="bg-black text-white hover:bg-green-400 mb-4 rounded-md p-2 w-full"
         type="button"
-      >
+        (click)="RegisterUser()">
         Register
-      </button>
-      <p class="text-center cursor-pointer w-1/3" (click)="navigatebacktologin()">have an account? Back to Log in </p>
-      </div>
+        </button>
+        <p class="text-center cursor-pointer w-1/3" (click)="navigatebacktologin()">have an account? Back to Log in </p>
+      </form>
     </div>
   </div>
   

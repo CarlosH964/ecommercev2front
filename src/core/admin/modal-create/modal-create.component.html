@@ -12,7 +12,7 @@
         <input type="number" placeholder="Stock" formControlName="stock" required/>
       </div>
       <input type="file" required (change)="onFileChange($event)">
-  </form>
+    </form>
     <div class="flex gap-20 justify-center">
       <button class="bg-green-400 rounded-lg p-2 mb-8 hover:cursor-pointer" (click)="addObject()">Submit</button>
       <button class="bg-red-400 rounded-lg p-2 mb-8 hover:cursor-pointer" (click)="cancel()">Cancel</button>

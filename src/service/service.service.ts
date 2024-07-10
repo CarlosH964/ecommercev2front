@@ -44,4 +44,8 @@ export class Serviceservice {
     const loginRequest = { email, password };
     return this.http.post<any>(`${this.baseUrl}/Users/login`, loginRequest);
   }
+
+  register(data?: any): Observable<any> {
+    return this.http.post<any[]>(`${this.baseUrl}/Users`, data);
+  }
 }
