@@ -18,7 +18,7 @@
         Clear Cart
       </button>
       <p class="px-10 border-black border-2 py-2">Total: ${{ total }}</p>
-      <button class="bg-green-500 px-20 rounded-md text-white">Accept and Pay</button>
+      <button class="bg-green-500 px-20 rounded-md text-white" (click)="MethodPay()">Accept and Buy</button>
     </div>
   </ng-container>
   <ng-template #emptyCart>

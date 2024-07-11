@@ -4,12 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PaymethodComponent } from '../view/user/paymethod/paymethod.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PaymethodComponent,
   ],
   imports: [
     BrowserModule,
