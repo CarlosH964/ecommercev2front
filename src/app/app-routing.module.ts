@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('../view/shadow/shadow-user.module').then(m => m.ShadowUserModule)
+    loadChildren: () => import('../view/user/shadow-user.module').then(m => m.ShadowUserModule)
   },
   {
     path: 'validation',
