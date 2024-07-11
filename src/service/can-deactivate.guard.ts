@@ -17,7 +17,7 @@ export class ProtecRoutesGuard {
       if (user && user.rol === 'user') {
         this.router.navigate(['/home']);
       } else {
-        alert('Access denied. Not exist your role.');
+        alert('Please Crate an account.');
       }
       return false;
     }

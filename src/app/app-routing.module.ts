@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('../core/shadow/shadow-user.module').then(m => m.ShadowUserModule)
+    loadChildren: () => import('../view/shadow/shadow-user.module').then(m => m.ShadowUserModule)
   },
   {
     path: 'validation',
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('../core/admin/admin.module').then(m => m.AdminModule),
+    loadChildren: () => import('../view/admin/admin.module').then(m => m.AdminModule),
     canActivate: [ProtecRoutesGuard]
   }
 ];
