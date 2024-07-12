@@ -4,21 +4,65 @@
   </div>
   <div class="grid">
     <p class="mt-4 text-center text-base">Card Number</p>
-    <input type="number" class="py-2 mb-4 px-4 border-2 rounded-xl border-black" placeholder="1234 5678 9101 1112" required />
+    <input
+      type="text"
+      class="py-2 mb-4 px-4 border-2 rounded-xl border-black"
+      placeholder="1234 5678 9101 1112"
+      maxlength="19"
+      inputmode="numeric"
+      pattern="[0-9]{19}"
+      required
+      (input)="formatCardNumberInput($event)"
+      [(ngModel)]="cardNumber"
+      name="cardNumber"
+      required
+    />
     <div class="flex justify-between gap-12 text-center">
       <div class="grid">
         <p class="mt-4 text-base">Expiration Date</p>
-        <input type="month" class="py-2 mb-4 px-4 border-2 border-black rounded-xl" placeholder="MM/YY" required/>
+        <input
+          type="month"
+          class="py-2 mb-4 px-4 border-2 border-black rounded-xl"
+          placeholder="MM/YY"
+          required
+          [(ngModel)]="expirationDate"
+          name="expirationDate"
+        />
       </div>
       <div class="grid">
         <p class="mt-4 text-base">CVV</p>
-        <input type="number" class="py-2 mb-4 px-4 border-2 border-black rounded-xl" placeholder="123"  required/>
+        <input
+          type="text"
+          class="py-2 mb-4 px-4 border-2 border-black rounded-xl"
+          placeholder="123"
+          maxlength="3"
+          inputmode="numeric"
+          pattern="[0-9]{3}"
+          required
+          (input)="validateNumberInput($event)"
+          [(ngModel)]="cvv"
+          name="cvv"
+          required
+        />
       </div>
     </div>
     <div class="grid">
       <p class="mt-4 text-base">Cardholder Name</p>
-      <input type="text" class="py-2 mb-4 px-4 border-2 border-black rounded-xl" placeholder="Jhon Doe" required>
+      <input
+        type="text"
+        class="py-2 mb-4 px-4 border-2 border-black rounded-xl"
+        placeholder="Jhon Doe"
+        required
+        [(ngModel)]="cardholderName"
+        name="cardholderName"
+      />
     </div>
-    <button class="bg-green-400 py-3 text-center rounded-xl mt-4" (click)="Pay()" [disabled]="!isValidForm()">Pay</button>
+    <button
+      class="bg-green-400 py-3 text-center rounded-xl mt-4"
+      (click)="Pay()"
+      [disabled]="!isValidForm()"
+    >
+      Pay
+    </button>
   </div>
 </div>

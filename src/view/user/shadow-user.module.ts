@@ -8,6 +8,7 @@ import { NgIconsModule } from '@ng-icons/core';
 import { featherCreditCard } from '@ng-icons/feather-icons';
 import { CartComponent } from './cart/cart.component';
 import { PaymethodComponent } from './paymethod/paymethod.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
     CartComponent,
     ShowItemComponent,
     MatDialogModule,

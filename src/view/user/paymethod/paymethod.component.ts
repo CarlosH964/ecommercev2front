@@ -10,6 +10,11 @@ import { CartService } from 'src/service/cart.service';
 })
 export class PaymethodComponent {
 
+  cardNumber: string = '';
+  expirationDate: string = '';
+  cvv: string = '';
+  cardholderName: string = '';
+
   constructor(
     private router: Router, 
     private dialogRef: MatDialogRef<PaymethodComponent>,
@@ -24,12 +29,20 @@ export class PaymethodComponent {
   }
 
   isValidForm(): boolean {
-    const inputs = document.getElementsByTagName('input');
-    for (let i = 0; i < inputs.length; i++) {
-      if (!inputs[i].checkValidity()) {
-        return false;
-      }
-    }
-    return true;
+    return !!(this.cardNumber && this.expirationDate && this.cvv && this.cardholderName);
+  }
+  
+
+  validateNumberInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let values = input.value.replace(/\D/g, '');
+    input.value = values;
+  }
+
+  formatCardNumberInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let value = input.value.replace(/\D/g, '');
+    value = value.match(/.{1,4}/g)?.join('-') ?? value;
+    input.value = value;
   }
 }
