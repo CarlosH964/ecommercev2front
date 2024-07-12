@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Serviceservice, ItemApi } from 'src/service/service.service';
+import { ItemsService, ItemApi } from 'src/service/items.service';
 import { ModalCreateComponent } from '../modal-create/modal-create.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEditComponent } from '../modal-edit/modal-edit.component';
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   element: ItemApi[] = [];
 
-  constructor(private apiService: Serviceservice) {}
+  constructor(private apiService: ItemsService) {}
 
   ngOnInit() {
     this.GetData();

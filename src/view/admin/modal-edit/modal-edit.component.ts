@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Serviceservice } from 'src/service/service.service';
+import { ItemsService } from 'src/service/items.service';
 
 @Component({
   selector: 'app-modal-edit',
@@ -20,7 +20,7 @@ export class ModalEditComponent {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ModalEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private service: Serviceservice
+    private service: ItemsService
   ) {
     this.ObjectForm = this.fb.group({
       elementid: [data.Object.id],

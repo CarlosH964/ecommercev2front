@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Serviceservice,  } from 'src/service/service.service';
+import { ValidationService } from 'src/service/validation.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { Serviceservice,  } from 'src/service/service.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private router: Router, private service: Serviceservice) {}
+  constructor(private router: Router, private service: ValidationService) {}
 
   email: string =  '';
   password: string = '';

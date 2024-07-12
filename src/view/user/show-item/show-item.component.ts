@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/shared/shared.module';
-import { Serviceservice, ItemApi } from 'src/service/service.service';
+import { ItemsService, ItemApi } from 'src/service/items.service';
 import { CartService } from 'src/service/cart.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ShowItemComponent implements OnInit {
   itemId!: number;
   item!: ItemApi;
 
-  constructor(private route: ActivatedRoute, private apiservice: Serviceservice, private cartservice: CartService) {}
+  constructor(private route: ActivatedRoute, private apiservice: ItemsService, private cartservice: CartService) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Serviceservice } from 'src/service/service.service';
+import { ItemsService } from 'src/service/items.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -18,7 +18,7 @@ export class ModalCreateComponent {
   constructor(
       private fb: FormBuilder,
       private dialogRef: MatDialogRef<ModalCreateComponent>,
-      private service: Serviceservice
+      private service: ItemsService
     ) {
       this.ObjectForm = this.fb.group({
         objectId: [''],

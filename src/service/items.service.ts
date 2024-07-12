@@ -16,7 +16,7 @@ export interface ItemApi {
 @Injectable({
   providedIn: 'root',
 })
-export class Serviceservice {
+export class ItemsService {
   private baseUrl = 'http://localhost:5146/api';
 
   constructor(private http: HttpClient) {}
@@ -42,14 +42,6 @@ export class Serviceservice {
       `${this.baseUrl}/ObjectsEcommerces/${Object.id}`,
       Object
     );
-  }
-
-  login(email: string, password: string): Observable<any> {
-    const loginRequest = { email, password };
-    return this.http.post<any>(`${this.baseUrl}/Users/login`, loginRequest);
-  }
-
-  register(data?: any): Observable<any> {
-    return this.http.post<any[]>(`${this.baseUrl}/Users`, data);
+    
   }
 }

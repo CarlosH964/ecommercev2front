@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/shared/shared.module';
-import { Serviceservice, ItemApi } from 'src/service/service.service';
+import { ItemsService, ItemApi } from 'src/service/items.service';
 import { Router } from '@angular/router';
 import { CartService } from 'src/service/cart.service';
 
@@ -16,7 +16,7 @@ export class ShadowUserComponent {
 
   element: ItemApi[] = [];
 
-  constructor(private apiService: Serviceservice, private router: Router, private cartservice: CartService) {}
+  constructor(private apiService: ItemsService, private router: Router, private cartservice: CartService) {}
 
   ngOnInit() {
     this.GetData();

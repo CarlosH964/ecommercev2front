@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Serviceservice } from 'src/service/service.service';
+import { ValidationService } from 'src/service/validation.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,7 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private services: Serviceservice
+    private services: ValidationService
   ) {
     this.ObjectForm = this.fb.group({
       name: [''],
