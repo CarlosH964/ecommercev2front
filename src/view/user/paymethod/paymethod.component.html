@@ -58,9 +58,10 @@
       />
     </div>
     <button
-      class="bg-green-400 py-3 text-center rounded-xl mt-4"
+      class="py-3 text-center rounded-xl mt-4 bg-green-400 disabled:bg-gray-400 text-white font-bold text-xl"
       (click)="Pay()"
       [disabled]="!isValidForm()"
+      [ngClass]="{ disabled: !isValidForm() }"
     >
       Pay
     </button>
