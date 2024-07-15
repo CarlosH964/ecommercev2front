@@ -23,7 +23,7 @@ export class ModalEditComponent {
     private service: ItemsService
   ) {
     this.ObjectForm = this.fb.group({
-      elementid: [data.Object.id],
+      elementid: [data.Object.idItems],
       elementobjectid: { value: data.Object.objectId, disabled: true },
       elementTittle: [data.Object.name],
       elementDescription: [data.Object.description],
@@ -50,7 +50,7 @@ export class ModalEditComponent {
 
   updatebject() {
     const updatedObj = {
-      id: this.ObjectForm.getRawValue().elementid,
+      idItems: this.ObjectForm.getRawValue().elementid,
       objectId: this.ObjectForm.getRawValue().elementobjectid,
       name: this.ObjectForm.value.elementTittle,
       description: this.ObjectForm.value.elementDescription,

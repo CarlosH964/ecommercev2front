@@ -38,8 +38,8 @@ export class DashboardComponent implements OnInit {
     return item.price * item.stock;
   }
 
-  deleteObject(id: number): void {
-    this.apiService.deleteObject(id).subscribe(
+  deleteObject(idItems: number): void {
+    this.apiService.deleteObject(idItems).subscribe(
       (response) => {
         console.log('Task deleted successfully:', response);
         this.GetData();

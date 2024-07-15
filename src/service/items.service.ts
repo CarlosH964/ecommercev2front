@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface ItemApi {
-  id: number;
+  idItems: number;
   objectId: number;
   name: string;
   description: string;
@@ -22,24 +22,24 @@ export class ItemsService {
   constructor(private http: HttpClient) {}
 
   getObjects(data?: any): Observable<any> {
-    return this.http.get<any[]>(`${this.baseUrl}/ObjectsEcommerces`);
+    return this.http.get<any[]>(`${this.baseUrl}/Items`);
   }
 
-  getObjectById(id: number): Observable<ItemApi> {
-    return this.http.get<ItemApi>(`${this.baseUrl}/ObjectsEcommerces/${id}`);
+  getObjectById(idItems: number): Observable<ItemApi> {
+    return this.http.get<ItemApi>(`${this.baseUrl}/Items/${idItems}`);
   }
 
   createObject(data?: any): Observable<any> {
-    return this.http.post<any[]>(`${this.baseUrl}/ObjectsEcommerces`, data);
+    return this.http.post<any[]>(`${this.baseUrl}/Items`, data);
   }
 
-  deleteObject(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/ObjectsEcommerces/${id}`);
+  deleteObject(idItems: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/Items/${idItems}`);
   }
 
   updateObject(Object: any): Observable<any> {
     return this.http.put(
-      `${this.baseUrl}/ObjectsEcommerces/${Object.id}`,
+      `${this.baseUrl}/Items/${Object.idItems}`,
       Object
     );
     

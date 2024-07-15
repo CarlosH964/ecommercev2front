@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface ItemApi {
-  id: number;
+  idItems: number;
   objectId: number;
   name: string;
   description: string;

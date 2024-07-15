@@ -2,11 +2,11 @@
 <div class="mt-16">
   <div class="grid grid-cols-5 px-10 gap-8">
     <div *ngFor="let item of element">
-      <div>
+      <div class="shadow-2xl rounded-xl">
         <img
           [src]="item.img"
           class="w-full h-[400px] rounded-t-xl border-2 hover:cursor-pointer"
-          *ngIf="item.img" (click)="itemnavigation(item.id)">
+          *ngIf="item.img" (click)="itemnavigation(item.idItems)">
         <div class="grid gap-2 border-2 p-2 rounded-b-xl">
           <p class="text-2xl">{{ item.name }}</p>
           <p class="text-lg text-gray-500">{{ item.description }}</p>
