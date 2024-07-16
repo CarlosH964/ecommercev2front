@@ -28,7 +28,7 @@ export class RegisterComponent {
       this.services.register(this.ObjectForm.value).subscribe(
         (response) => {
           console.log(response);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/login']);
           alert("Now you are a User");
         },
         (error) => {

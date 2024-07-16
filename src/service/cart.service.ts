@@ -29,7 +29,7 @@ export class CartService {
   }
 
   addToCart(item: any): void {
-    const existingItem = this.cartItems.find(i => i.id === item.id);
+    const existingItem = this.cartItems.find(i => i.idItems  === item.IdItems);
 
     if (existingItem) {
       existingItem.quantity += 1;
@@ -39,10 +39,11 @@ export class CartService {
 
     this.saveCartItemsToStorage();
     this.cartItemsSubject.next(this.cartItems);
+    console.log(this.cartItems);
   }
 
   removeItemFromCart(item: any): void {
-    const index = this.cartItems.findIndex(i => i.id === item.id);
+    const index = this.cartItems.findIndex(i => i.idItems === item.idItems);
 
     if (index !== -1) {
       if (this.cartItems[index].quantity > 1) {
