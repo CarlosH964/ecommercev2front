@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ItemsService } from 'src/service/items.service';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-modal-create',
@@ -13,12 +15,12 @@ import { CommonModule } from '@angular/common';
 })
 export class ModalCreateComponent {
   ObjectForm: FormGroup;
-  base64Image: string | null = null;
 
   constructor(
       private fb: FormBuilder,
       private dialogRef: MatDialogRef<ModalCreateComponent>,
-      private service: ItemsService
+      private service: ItemsService,
+      private http: HttpClient 
     ) {
       this.ObjectForm = this.fb.group({
         objectId: [''],
@@ -32,16 +34,23 @@ export class ModalCreateComponent {
     }
 
     onFileChange(event: any) {
-      const reader = new FileReader();
-      if(event.target.files && event.target.files.length) {
-        const [file] = event.target.files;
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          this.base64Image = reader.result as string;
-          this.ObjectForm.patchValue({
-            img: this.base64Image
-          });
-        };
+       const file = event.target.files[0];
+      if (file) {
+        const formData = new FormData();
+        formData.append('image', file);
+
+        const apiKey = environment.IMGBB_API_KEY;
+        const url = `https://api.imgbb.com/1/upload?key=${apiKey}`;
+
+        this.http.post(url, formData).subscribe(
+          (response: any) => {
+            const imageUrl = response.data.url;
+            this.ObjectForm.patchValue({ img: imageUrl });
+          },
+          (error) => {
+            console.error('Error uploading image to imgbb:', error);
+          }
+        );
       }
     }
   
