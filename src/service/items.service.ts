@@ -25,6 +25,10 @@ export class ItemsService {
     return this.http.get<any[]>(`${this.baseUrl}/Items`);
   }
 
+  getObjectswithstock(data?: any): Observable<any> {
+    return this.http.get<any[]>(`${this.baseUrl}/Items/instock`);
+  }
+
   getObjectById(idItems: number): Observable<ItemApi> {
     return this.http.get<ItemApi>(`${this.baseUrl}/Items/${idItems}`);
   }

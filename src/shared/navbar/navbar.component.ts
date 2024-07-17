@@ -9,6 +9,7 @@ import { CartService } from 'src/service/cart.service';
 })
 export class NavbarComponent implements OnInit {
   cartItemCount: number = 0;
+  username: string = '';
 
   constructor(private router: Router, private cartService: CartService) {}
 
@@ -16,6 +17,13 @@ export class NavbarComponent implements OnInit {
     this.cartService.getCartItemsObservable().subscribe(cartItems => {
       this.cartItemCount = this.calculateCartItemCount(cartItems);
     });
+
+    const user = localStorage.getItem('user');
+    console.log(user);
+    if (user) {
+      const userData = JSON.parse(user);
+      this.username = userData.name;
+    }
   }
 
   private calculateCartItemCount(cartItems: any[]): number {
@@ -32,5 +40,13 @@ export class NavbarComponent implements OnInit {
 
   navigateToCart() {
     this.router.navigate(['/home/cart']);
+  }
+
+  EndSession(){
+    localStorage.removeItem('user');
+    this.router.navigate(['/home']).then(() => {
+      window.location.reload();
+    });
+    alert("Session ended");
   }
 }

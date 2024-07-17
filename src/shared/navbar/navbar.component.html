@@ -1,10 +1,14 @@
 <nav class="flex bg-black text-white justify-between px-16 py-6">
   <div class="flex gap-4 hover:cursor-pointer" (click)="navigateToHome()">
     <ng-icon name="featherBox" class="text-4xl"></ng-icon>
-    <p class="font-bold text-2xl">Acme Store</p>
+    <p class="font-bold text-2xl">Materia Store</p>
   </div>
   <div class="flex gap-12">
-    <div class="relative" (click)="navigateToCart()">
+    <span *ngIf="username" mat-button [matMenuTriggerFor]="menu" class="text-white text-2xl text-center hover:cursor-pointer">{{ username }}</span>
+    <mat-menu #menu="matMenu" class="flex items-center justify-center">
+      <p class="text-lg font-bold hover:cursor-pointer px-4" (click)="EndSession()">Leave Session</p>
+    </mat-menu>
+    <div class="relative flex gap-10" (click)="navigateToCart()">
       <ng-icon name="featherShoppingBag" class="text-4xl hover:cursor-pointer"></ng-icon>
       <span *ngIf="cartItemCount > 0" class="absolute bottom-6 left-6 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
         {{ cartItemCount }}

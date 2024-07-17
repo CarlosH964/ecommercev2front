@@ -23,7 +23,7 @@ export class ShadowUserComponent {
   }
   
   GetData() {
-    this.apiService.getObjects().subscribe(
+    this.apiService.getObjectswithstock().subscribe(
       (data) => {
         this.element = data;
         console.log(this.element);
@@ -36,6 +36,7 @@ export class ShadowUserComponent {
 
   itemnavigation(itemId: number) {
     this.router.navigate(['/home/item', itemId]);
+    this.GetData();
   }
 
   addTocart(item: ItemApi) {

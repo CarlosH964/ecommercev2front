@@ -2,10 +2,10 @@
 <div class="flex justify-center items-center gap-10 mt-44">
   <div *ngIf="item">
     <picture>
-      <img [src]="item.img" class="w-[500px] h-[500px] rounded-xl shadow-2xl" alt="{{ item.name }}" />
+      <img [src]="item.img" class="w-[700px] h-[600px] rounded-xl shadow-2xl" alt="{{ item.name }}" />
     </picture>
   </div>
-  <div *ngIf="item">
+  <div *ngIf="item" class="grid w-1/5 gap-4">
     <p class="text-6xl font-bold">{{ item.name }}</p>
     <p class="text-2xl text-gray-600">{{ item.description }}</p>
     <div class="flex gap-1">
@@ -14,7 +14,7 @@
     </div>
     <div class="flex justify-between gap-10">
         <p class="text-3xl">${{ item.price }}</p>
-        <p class="grid items-center border-2 px-4 rounded-xl">In Stock</p>
+        <p class="grid items-center border-2 px-4 rounded-xl">{{ item.stock }} - In Stock</p>
     </div>
     <div class="bg-black text-white rounded-xl font-bold text-center hover:cursor-pointer mt-8" (click)="addToCart(item)">
       <p class="py-3">Add to Shop Car</p>
