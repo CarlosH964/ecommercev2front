@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
 <div class="mt-16">
-  <div class="grid grid-cols-8 px-10 gap-8">
+  <div class="grid xl:grid-cols-7 lg:grid-cols-2 px-10 gap-8">
     <div *ngFor="let item of element">
       <div class="shadow-2xl rounded-xl">
         <img
           [src]="item.img"
-          class="w-full h-[200px] rounded-t-xl border-2 hover:cursor-pointer"
+          class="w-full xl:h-[280px] lg:h-[420px] rounded-t-xl border-2 hover:cursor-pointer"
           *ngIf="item.img" (click)="itemnavigation(item.idItems)">
         <div class="grid gap-2 border-2 px-2 py-2 rounded-b-xl">
           <p class="text-2xl">{{ item.name }}</p>
