@@ -9,6 +9,8 @@ import { featherCreditCard } from '@ng-icons/feather-icons';
 import { CartComponent } from './cart/cart.component';
 import { PaymethodComponent } from './paymethod/paymethod.component';
 import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 const routes: Routes = [
   {
@@ -36,6 +38,8 @@ const routes: Routes = [
     ShowItemComponent,
     MatDialogModule,
     ShadowUserComponent,
+    MatInputModule,
+    MatFormFieldModule,
     RouterModule.forChild(routes),
     NgIconsModule.withIcons({ featherCreditCard })
   ]

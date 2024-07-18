@@ -50,7 +50,7 @@ export class CartComponent implements OnInit {
   MethodPay(): void {
     if (this.isLoggedIn()) {
       this.dialog.open(PaymethodComponent, {
-        width: 'fullscreen',
+        width: 'fullscreen'
       }).afterClosed();
     } else {
       alert('Please Log in or Register to shop at Materia Store.');
