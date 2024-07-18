@@ -2,9 +2,9 @@
 
 <div>
   <div class="px-20 text-lg mt-10 w-full flex justify-center">
-    <input type="text" class="w-1/3 text-center border-2 rounded-xl py-2" placeholder="Write your product" [(ngModel)]="searchTerm" (input)="filterItems()"/>
+    <input type="text" class=" w-full md:w-1/3 text-center border-2 rounded-xl py-2" placeholder="Write your product" [(ngModel)]="searchTerm" (input)="filterItems()"/>
   </div>
-  <div class="grid xl:grid-cols-5 lg:grid-cols-2 px-10 gap-8 mt-8">
+  <div class="grid lg:grid-cols-2 mh:grid-cols-3 xl:grid-cols-5 px-10 gap-8 mt-8">
     <div *ngFor="let item of filteredItems">
       <div class="shadow-2xl rounded-xl">
         <div class="p-4">

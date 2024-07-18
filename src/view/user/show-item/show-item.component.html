@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
-<div class="flex justify-center items-center gap-10 mt-44">
-  <div *ngIf="item" class="px-4 lg:w-[450px] xl:w-[550px] xl:h-[540px] rounded-xl shadow-2xl">
+<div class="grid lg:flex justify-center items-center gap-10 mt-44">
+  <div *ngIf="item" class="grid px-4 lg:w-[450px] xl:w-[550px] xl:h-[540px] rounded-xl shadow-2xl justify-center">
     <picture>
       <img [src]="item.img" alt="{{ item.name }}" />
     </picture>
   </div>
-  <div *ngIf="item" class="grid w-1/5 xl:gap-4">
+  <div *ngIf="item" class="grid px-10 lg:px-0 justify-center lg:w-1/5 gap-4">
     <p class="lg:text-2xl xl:text-6xl font-bold">{{ item.name }}</p>
     <p class="lg:text-lg  xl:text-2xl text-gray-600">{{ item.description }}</p>
     <div class="flex gap-1">
