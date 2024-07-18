@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProtecRoutesGuard } from 'src/service/can-deactivate.guard';
+import { ProtecRoutesGuard } from 'src/guard/can-deactivate.guard';
 
 const routes: Routes = [
   {

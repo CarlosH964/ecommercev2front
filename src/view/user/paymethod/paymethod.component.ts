@@ -52,6 +52,8 @@ export class PaymethodComponent {
             total: item.price * item.quantity
           };
 
+          console.log(venta);
+
           const updateStockObservable = this.itemsService.updateObject({
             ...item,
             stock: updatedStock,

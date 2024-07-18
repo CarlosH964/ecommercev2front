@@ -29,7 +29,7 @@ export class CartService {
   }
 
   addToCart(item: any): void {
-    const existingItem = this.cartItems.find(i => i.idItems  === item.IdItems);
+    const existingItem = this.cartItems.find(i => i.idItems === item.idItems);
 
     if (existingItem) {
       existingItem.quantity += 1;

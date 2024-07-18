@@ -7,6 +7,7 @@
     <span *ngIf="username" mat-button [matMenuTriggerFor]="menu" class="text-white text-2xl text-center hover:cursor-pointer">{{ username }}</span>
     <mat-menu #menu="matMenu" class="flex items-center justify-center">
       <p class="text-lg font-bold hover:cursor-pointer px-4" (click)="EndSession()">Leave Session</p>
+      <p class="text-lg font-bold hover:cursor-pointer px-4" (click)="NavigateToAdmin()">Admin Dashboard</p>
     </mat-menu>
     <div class="relative flex gap-10" (click)="navigateToCart()">
       <ng-icon name="featherShoppingBag" class="text-4xl hover:cursor-pointer"></ng-icon>

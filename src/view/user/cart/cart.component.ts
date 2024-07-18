@@ -16,6 +16,7 @@ export class CartComponent implements OnInit {
 
   cartItems: any[] = [];
   total: number = 0;
+  readonly dialog = inject(MatDialog);
 
   constructor(private cartService: CartService){}
 
@@ -42,11 +43,17 @@ export class CartComponent implements OnInit {
     }, 0);
   }
 
-  readonly dialog = inject(MatDialog);
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('user');
+  }
 
-  MethodPay():void{
-    this.dialog.open(PaymethodComponent,{
-      width: 'fullscreen',
-    }).afterClosed()
+  MethodPay(): void {
+    if (this.isLoggedIn()) {
+      this.dialog.open(PaymethodComponent, {
+        width: 'fullscreen',
+      }).afterClosed();
+    } else {
+      alert('Please Log in or Register to shop at Materia Store.');
+    }
   }
 }

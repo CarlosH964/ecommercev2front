@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router, private cartService: CartService) {}
 
   ngOnInit() {
-    this.cartService.getCartItemsObservable().subscribe(cartItems => {
+    this.cartService.getCartItemsObservable().subscribe((cartItems) => {
       this.cartItemCount = this.calculateCartItemCount(cartItems);
     });
 
@@ -42,11 +42,24 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/home/cart']);
   }
 
-  EndSession(){
+  EndSession() {
     localStorage.removeItem('user');
     this.router.navigate(['/home']).then(() => {
       window.location.reload();
     });
-    alert("Session ended");
+    alert('Session ended');
+  }
+
+  NavigateToAdmin() {
+    const user = localStorage.getItem('user');
+    if(user){
+      const userData = JSON.parse(user);
+      if(userData.rol === 'admin'){
+        this.router.navigate(['/admin']);
+      } else {
+        alert('Access denied. Only admin can access.');
+      }
+    }
   }
 }
+
