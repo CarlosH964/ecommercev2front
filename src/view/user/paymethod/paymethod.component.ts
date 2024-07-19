@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { CartService } from 'src/service/cart.service';
 import { VentasService } from 'src/service/ventas.service';
 import { ItemsService } from 'src/service/items.service';
-import { forkJoin, switchMap } from 'rxjs';
+import { forkJoin, switchMap, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-paymethod',
@@ -26,64 +26,81 @@ export class PaymethodComponent {
     private itemsService: ItemsService
   ) { }
 
+  //obtener items del carrito
   Pay(): void {
     const cartItems = this.cartService.getCartItems();
-
-    const invalidStockItems = cartItems.filter(item => item.quantity > item.stock);
-    if (invalidStockItems.length > 0) {
+    //valida que haya stock en todos los productos del carrito
+    if (this.isStockInvalid(cartItems)){
       alert('Algunos artículos en tu carrito exceden el stock disponible. Por favor ajusta las cantidades.');
       return;
     }
 
-    const preV = {
-      userId: this.getUserId(),
-      fecha: new Date().toISOString()
-    };
+    //crea la preventa
+    const preV = this.createPreV();
 
-    this.ventasService.createPreV(preV).pipe(
-      switchMap(preVResponse => {
-        const prevId = preVResponse.prevId;
-
-        const ventasObservables = cartItems.map((item) => {
-          const updatedStock = item.stock - item.quantity;
-          const venta = {
-            itemsIds: [item.idItems],
-            idPrev: prevId,
-            total: item.price * item.quantity
-          };
-
-          console.log(venta);
-
-          const updateStockObservable = this.itemsService.updateObject({
-            ...item,
-            stock: updatedStock,
-          });
-
-          return forkJoin([
-            this.ventasService.createVenta(venta),
-            updateStockObservable,
-          ]);
-        });
-
-        return forkJoin(ventasObservables);
-      })
-    ).subscribe({
-      next: (responses) => {
-        alert('Pago realizado con éxito');
-        this.cartService.clearCart();
-        this.dialogRef.close();
-        this.router.navigate(['/home']);
-        
-        responses.forEach(response => console.log('Venta creada:', response[0], 'Stock actualizado:', response[1]));
-      },
-      error: (err) => {
-        console.error('Error al procesar el pago:', err);
-        alert('Ocurrió un error al procesar tu pago.');
-      },
+    //llama a la funcion processpayment para realizar la venta.
+    this.processPayment(preV, cartItems).subscribe({
+      //limpiar el carrito y actualiza el stock
+      next: () => this.handleSuccess(),
+      error: (err) => this.handleError(err),
     });
   }
 
-  getUserId(): number {
+  //verifica el stock de los productos del carrito si son suficientes a lo solicitado
+  private isStockInvalid(cartItems: any[]): boolean {
+    return cartItems.some(item => item.quantity > item.stock);
+  }
+
+  private createPreV(): { userId: number, fecha: string } {
+    return {
+      userId: this.getUserId(),
+      fecha: new Date().toISOString()
+    };
+  }
+
+  //crea la pre venta y combina los observables usando forkJoin
+  private processPayment(preV: { userId: number, fecha: string }, cartItems: any[]): Observable<any[]> {
+    return this.ventasService.createPreV(preV).pipe(
+      switchMap(preVResponse => {
+        const prevId = preVResponse.prevId;
+        const ventasObservables = cartItems.map(item => this.createVentaAndUpdateStock(item, prevId));
+        return forkJoin(ventasObservables);
+      })
+    );
+  }
+    
+  private createVentaAndUpdateStock(item: any, prevId: number): Observable<any[]> {
+    const updatedStock = item.stock - item.quantity;
+    const venta = {
+      itemsIds: [item.idItems],
+      idPrev: prevId,
+      total: item.price * item.quantity
+    };
+
+    const updateStockObservable = this.itemsService.updateObject({
+      ...item,
+      stock: updatedStock,
+    });
+
+    return forkJoin([
+      this.ventasService.createVenta(venta),
+      updateStockObservable,
+    ]);
+  }
+
+  private handleSuccess(): void {
+    alert('Pago realizado con éxito');
+    this.cartService.clearCart();
+    this.dialogRef.close();
+    this.router.navigate(['/home']);
+  }
+
+  private handleError(error: any): void {
+    console.error('Error al procesar el pago:', error);
+    alert('Ocurrió un error al procesar tu pago.');
+  }
+
+  private getUserId(): number {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return user.idUser;
   }
@@ -94,15 +111,19 @@ export class PaymethodComponent {
   
   validateNumberInput(event: Event): void {
     const input = event.target as HTMLInputElement;
-    let values = input.value.replace(/\D/g, '');
-    input.value = values;
+    input.value = this.formatInput(input.value, /\D/g);
   }
 
   formatCardNumberInput(event: Event): void {
     const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, '');
-    value = value.match(/.{1,4}/g)?.join('-') ?? value;
-    input.value = value;
+    input.value = this.formatInput(input.value, /\D/g, 4, '-');
   }
 
+  private formatInput(value: string, regex: RegExp, groupSize?: number, delimiter?: string): string {
+    let formattedValue = value.replace(regex, '');
+    if (groupSize && delimiter) {
+      formattedValue = formattedValue.match(new RegExp(`.{1,${groupSize}}`, 'g'))?.join(delimiter) ?? formattedValue;
+    }
+    return formattedValue;
+  }
 }

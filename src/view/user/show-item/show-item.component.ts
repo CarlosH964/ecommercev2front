@@ -10,34 +10,47 @@ import { CartService } from 'src/service/cart.service';
   standalone: true,
   templateUrl: './show-item.component.html',
   styleUrls: ['./show-item.component.css'],
-  imports: [SharedModule, CommonModule]
+  imports: [SharedModule, CommonModule],
 })
 export class ShowItemComponent implements OnInit {
   itemId!: number;
   item!: ItemApi;
 
-  constructor(private route: ActivatedRoute, private apiservice: ItemsService, private cartservice: CartService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private itemsService: ItemsService,
+    private cartService: CartService
+  ) {}
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.itemId = +params['id'];
-      this.fetchItemDetails(this.itemId);
-    });
+  ngOnInit(): void {
+    this.route.params.subscribe(params => this.onRouteParamsChange(params));
   }
 
-  fetchItemDetails(id: number) {
-    this.apiservice.getObjectById(id).subscribe(
-      (data) => {
-        this.item = data;
-          console.log(this.item);
-      },
-      (error) => {
-        console.error('Error fetching item details:', error);
-      }
+  //cambio de parametro en la ruta
+  private onRouteParamsChange(params: any): void {
+    this.itemId = +params['id'];
+    this.fetchItemDetails(this.itemId);
+  }
+
+  //llamada al servicio itemsService para obtener info del item por su Id
+  private fetchItemDetails(id: number): void {
+    this.itemsService.getObjectById(id).subscribe(
+      //se ejecuta cuando el observable emite un valor exitoso
+      item => this.onItemLoadSuccess(item),
+      error => this.onItemLoadError(error)
     );
   }
 
-  addToCart(item: any) {
-    this.cartservice.addToCart(item);
+  private onItemLoadSuccess(item: ItemApi): void {
+    this.item = item;
+    console.log(this.item);
+  }
+
+  private onItemLoadError(error: any): void {
+    console.error('Error fetching item details:', error);
+  }
+
+  addToCart(item: ItemApi): void {
+    this.cartService.addToCart(item);
   }
 }

@@ -13,7 +13,7 @@
               [src]="item.img"
               class="w-full xl:h-[400px] lg:h-[320px] rounded-t-xl hover:cursor-pointer"
               *ngIf="item.img"
-              (click)="itemnavigation(item.idItems)"
+              (click)="NavigationShowItem(item.idItems)"
             />
           </div>
           <div class="grid gap-2 px-2 py-2 rounded-b-xl"></div>
@@ -23,7 +23,7 @@
             <p class="text-lg">S/.{{ item.price }}</p>
             <button
               class="bg-black text-white px-4 py-2 rounded-lg hover:bg-green-400 hover:text-black"
-              (click)="addTocart(item)">
+              (click)="addItemTocart(item)">
               Add to Cart
             </button>
           </div>

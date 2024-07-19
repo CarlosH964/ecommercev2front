@@ -11,50 +11,50 @@ import { CartService } from 'src/service/cart.service';
   standalone: true,
   templateUrl: './shadow-user.component.html',
   styleUrls: ['./shadow-user.component.css'],
-  imports: [SharedModule, CommonModule, FormsModule]
+  imports: [SharedModule, CommonModule, FormsModule],
 })
 export class ShadowUserComponent {
-
-  element: ItemApi[] = [];
+  items: ItemApi[] = [];
   filteredItems: ItemApi[] = [];
   searchTerm: string = '';
 
-  constructor(private apiService: ItemsService, private router: Router, private cartservice: CartService) {}
+  constructor(
+    private itemsService: ItemsService,
+    private router: Router,
+    private cartservice: CartService
+  ) {}
 
-  ngOnInit() {
-    this.GetData();
+  ngOnInit(): void {
+    this.GetItems();
   }
   
-  GetData() {
-    this.apiService.getObjectswithstock().subscribe(
-      (data) => {
-        this.element = data;
-        this.filteredItems = this.element;
-        console.log(this.element);
-      },
-      (error) => {
-        console.error('Error fetching tasks:', error);
-      }
+  private GetItems(): void {
+    this.itemsService.getObjectswithstock().subscribe(
+      items => this.onItemsLoadSuccess(items),
+      error => this.onItemsLoadError(error)
     );
   }
 
-  filterItems() {
-    if(this.searchTerm){
-      this.filteredItems = this.element.filter(item => 
-        item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-    } else {
-      this.filteredItems = this.element;
-    }
+  private onItemsLoadSuccess(items: ItemApi[]): void {
+    this.items = items;
+    this.filteredItems = items;
   }
 
-  itemnavigation(itemId: number) {
+  private onItemsLoadError(error: any): void {
+    console.error('Error fetching items:', error);
+  }
+
+  filterItems():void {
+    this.filteredItems = this.searchTerm
+    ? this.items.filter(item => item.name.toLowerCase().includes(this.searchTerm.toLowerCase()))
+    : this.items;
+  }
+
+  NavigationShowItem(itemId: number) {
     this.router.navigate(['/home/item', itemId]);
-    this.GetData();
   }
 
-  addTocart(item: ItemApi) {
+  addItemTocart(item: ItemApi) {
     this.cartservice.addToCart(item);
   }
-  
 }
