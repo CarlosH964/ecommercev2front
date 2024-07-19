@@ -11,7 +11,7 @@ import { CartService } from 'src/service/cart.service';
   standalone: true,
   templateUrl: './shadow-user.component.html',
   styleUrls: ['./shadow-user.component.css'],
-  imports: [SharedModule, CommonModule, FormsModule],
+  imports: [SharedModule, CommonModule, FormsModule],  
 })
 export class ShadowUserComponent {
   items: ItemApi[] = [];

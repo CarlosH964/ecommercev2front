@@ -17,7 +17,7 @@ export class ProtecRoutesGuard {
       if (user && user.rol === 'user') {
         this.router.navigate(['/home']);
       } else {
-        alert('Please Crate an account.');
+        alert('Please Create an account.');
       }
       return false;
     }

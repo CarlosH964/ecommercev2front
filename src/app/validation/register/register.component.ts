@@ -17,9 +17,9 @@ export class RegisterComponent {
     private services: ValidationService
   ) {
     this.ObjectForm = this.fb.group({
-      name: [''],
-      email: [''],
-      password: [''],
+      name: '',
+      email: '',
+      password: '',
     });
   }
 

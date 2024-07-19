@@ -63,7 +63,7 @@
       </mat-form-field>
     </div>
     <button
-      class="py-3 text-center rounded-xl mt-4 bg-green-400 disabled:bg-gray-400 text-white font-bold text-xl"
+      class="py-3 text-center rounded-xl mt-4 bg-green-400 disabled:bg-gray-400 text-white font-bold text-xl enabled:hover:scale-110 enabled:transition enabled:delay-0"
       (click)="Pay()"
       [disabled]="!isValidForm()"
       [ngClass]="{ disabled: !isValidForm() }"

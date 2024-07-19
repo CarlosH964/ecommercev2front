@@ -7,10 +7,13 @@ module.exports = {
     extend: {
       screens: {
         'mh' : '1300px',
-        'xl' : '1800px'
+        'xl' : '2500px',
+        'minxl' : '1800px'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }
 

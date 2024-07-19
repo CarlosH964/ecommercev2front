@@ -14,11 +14,11 @@
       </div>
     </div>
     <div class="grid justify-center gap-4 lg:gap-0 lg:flex lg:justify-between mt-8">
-      <button (click)="clearCart()" class="bg-black text-white px-4 py-2 rounded">
+      <button (click)="clearCart()" class="bg-black text-white px-4 py-2 rounded hover:scale-110 transition delay-0">
         Clear Cart
       </button>
       <p class="flex px-10 border-black border-2 py-4 justify-center">Total: S/.{{ total }}</p>
-      <button class="bg-green-500 px-20 lg:py-0 py-2 rounded-md text-white" (click)="MethodPay()">Accept and Buy</button>
+      <button class="bg-green-500 px-20 lg:py-0 py-2 rounded-md text-white hover:scale-110 transition delay-0" (click)="MethodPay()">Accept and Buy</button>
     </div>
   </ng-container>
   <ng-template #emptyCart>
