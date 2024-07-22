@@ -11,6 +11,7 @@ import { PaymethodComponent } from './paymethod/paymethod.component';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { SharedModule } from 'src/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -29,15 +30,16 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    PaymethodComponent
+    PaymethodComponent,
+    ShadowUserComponent,
+    ShowItemComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     CartComponent,
-    ShowItemComponent,
     MatDialogModule,
-    ShadowUserComponent,
+    SharedModule,
     MatInputModule,
     MatFormFieldModule,
     RouterModule.forChild(routes),

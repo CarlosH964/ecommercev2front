@@ -1,17 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ItemsService, ItemApi } from 'src/service/items.service';
 import { ModalCreateComponent } from '../modal-create/modal-create.component';
 import { MatDialog } from '@angular/material/dialog';
-import { SharedModule } from 'src/shared/shared.module';
 import { ModalEditComponent } from '../modal-edit/modal-edit.component';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  imports: [CommonModule, SharedModule]
 })
 export class DashboardComponent implements OnInit {
 

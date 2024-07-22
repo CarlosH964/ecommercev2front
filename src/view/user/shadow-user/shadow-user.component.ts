@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { SharedModule } from 'src/shared/shared.module';
 import { ItemsService, ItemApi } from 'src/service/items.service';
 import { Router } from '@angular/router';
 import { CartService } from 'src/service/cart.service';
 
 @Component({
   selector: 'app-shadow-user',
-  standalone: true,
   templateUrl: './shadow-user.component.html',
   styleUrls: ['./shadow-user.component.css'],
-  imports: [SharedModule, CommonModule, FormsModule],  
 })
 export class ShadowUserComponent {
   items: ItemApi[] = [];

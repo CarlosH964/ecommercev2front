@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { SharedModule } from 'src/shared/shared.module';
 import { ItemsService, ItemApi } from 'src/service/items.service';
 import { CartService } from 'src/service/cart.service';
 
 @Component({
   selector: 'app-show-item',
-  standalone: true,
   templateUrl: './show-item.component.html',
   styleUrls: ['./show-item.component.css'],
-  imports: [SharedModule, CommonModule],
 })
 export class ShowItemComponent implements OnInit {
   itemId!: number;
