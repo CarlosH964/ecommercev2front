@@ -22,7 +22,7 @@ export class ItemsService {
   constructor(private http: HttpClient) {}
 
   getObjects(data?: any): Observable<any> {
-    return this.http.get<any[]>(`${this.baseUrl}/Items`);
+    return this.http.get<any[]>(`${this.baseUrl}/Items/notdelete`);
   }
 
   getObjectswithstock(data?: any): Observable<any> {
@@ -36,9 +36,8 @@ export class ItemsService {
   createObject(data?: any): Observable<any> {
     return this.http.post<any[]>(`${this.baseUrl}/Items`, data);
   }
-
-  deleteObject(idItems: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/Items/${idItems}`);
+  putIsDeleteObject(idItems: number): Observable<void> {
+    return this.http.patch<void>(`${this.baseUrl}/Items/${idItems}/softdelete`, {});
   }
 
   updateObject(Object: any): Observable<any> {

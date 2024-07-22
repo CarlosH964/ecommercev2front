@@ -36,15 +36,15 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteObject(idItems: number): void {
-    this.apiService.deleteObject(idItems).subscribe(
-      (response) => {
-        console.log('Task deleted successfully:', response);
+    this.apiService.putIsDeleteObject(idItems).subscribe(
+      () => {
+        console.log('Item marked as deleted successfully.');
         this.GetData();
       },
       (error) => {
-        console.error('Error deleting task:', error);
+        console.error('Error marking item as deleted:', error);
       }
-    )
+    );
   }
 
   //Modal
