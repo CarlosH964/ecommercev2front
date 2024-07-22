@@ -10,6 +10,7 @@ import { CartService } from 'src/service/cart.service';
 export class NavbarComponent implements OnInit {
   cartItemCount: number = 0;
   username: string = '';
+  userRole: string = '';
 
   constructor(private router: Router, private cartService: CartService) {}
 
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
     if (user) {
       const userData = JSON.parse(user);
       this.username = userData.name;
+      this.userRole = userData.rol;
     }
   }
 
