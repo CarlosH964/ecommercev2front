@@ -15,6 +15,6 @@
         {{ cartItemCount }}
       </span>
     </div>
-    <ng-icon name="featherUser" class="text-4xl hover:cursor-pointer" (click)="navigateToLogin()"></ng-icon>
+    <ng-icon *ngIf="!isUserLoggedIn" name="featherUser" class="text-4xl hover:cursor-pointer" (click)="navigateToLogin()"></ng-icon>
   </div>
 </nav>

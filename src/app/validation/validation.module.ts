@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { featherUser, featherUserPlus } from '@ng-icons/feather-icons';
 import { NgIconsModule } from '@ng-icons/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SharedModule,
     FormsModule,
     RouterModule.forChild(routes),
     NgIconsModule.withIcons({ featherUser, featherUserPlus })
