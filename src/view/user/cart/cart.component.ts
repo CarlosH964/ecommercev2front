@@ -31,6 +31,12 @@ export class CartComponent implements OnInit {
     this.calculateTotal();
   }
 
+  increaseItemFromCart(item: any) {
+    this.cartService.increaseItemCart(item);
+    this.cartItems = this.cartService.getCartItems();
+    this.calculateTotal();
+  }
+
   clearCart() {
     this.cartService.clearCart();
     this.cartItems = [];

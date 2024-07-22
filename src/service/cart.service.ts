@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   private cartItems: any[] = [];
-  private cartItemsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  private cartItemsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(
+    []
+  );
 
   constructor() {
     this.loadCartItemsFromStorage();
@@ -29,7 +31,7 @@ export class CartService {
   }
 
   addToCart(item: any): void {
-    const existingItem = this.cartItems.find(i => i.idItems === item.idItems);
+    const existingItem = this.cartItems.find((i) => i.idItems === item.idItems);
 
     if (existingItem) {
       existingItem.quantity += 1;
@@ -43,7 +45,7 @@ export class CartService {
   }
 
   removeItemFromCart(item: any): void {
-    const index = this.cartItems.findIndex(i => i.idItems === item.idItems);
+    const index = this.cartItems.findIndex((i) => i.idItems === item.idItems);
 
     if (index !== -1) {
       if (this.cartItems[index].quantity > 1) {
@@ -55,6 +57,19 @@ export class CartService {
       this.saveCartItemsToStorage();
       this.cartItemsSubject.next(this.cartItems);
     }
+  }
+
+  increaseItemCart(item: any): void {
+    const index = this.cartItems.findIndex((i) => i.idItems === item.idItems);
+
+    if (index !== -1) {
+      this.cartItems[index].quantity += 1;
+    } else {
+      item.quantity = 1;
+      this.cartItems.push(item);
+    }
+    this.saveCartItemsToStorage();
+    this.cartItemsSubject.next(this.cartItems);
   }
 
   clearCart(): void {

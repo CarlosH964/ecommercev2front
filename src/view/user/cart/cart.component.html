@@ -9,7 +9,8 @@
           <div class="text-2xl font-bold">{{ item.name }}</div>
           <div class="text-base">Price: S/.{{ item.price }}</div>
           <div class="text-base">Quantity: {{ item.quantity }}</div>
-          <button (click)="removeItemFromCart(item)" class="mt-4 bg-black text-white px-4 py-2 rounded-lg">Remove</button>
+          <button (click)="removeItemFromCart(item)" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg">Remove</button>´
+          <button (click)="increaseItemFromCart(item)" class="mt-4 bg-green-400 text-white px-4 py-2 rounded-lg">Increase</button>
         </div>
       </div>
     </div>
