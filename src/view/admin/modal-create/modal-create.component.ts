@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ItemsService } from 'src/service/items.service';
-import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-modal-create',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './modal-create.component.html',
   styleUrls: ['./modal-create.component.css']
 })
@@ -23,7 +20,6 @@ export class ModalCreateComponent {
       private http: HttpClient 
     ) {
       this.ObjectForm = this.fb.group({
-        objectId: [''],
         name: [''],
         description: [''],
         customer: [''],

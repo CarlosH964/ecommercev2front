@@ -32,12 +32,12 @@ const routes: Routes = [
   declarations: [
     PaymethodComponent,
     ShadowUserComponent,
-    ShowItemComponent
+    ShowItemComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    CartComponent,
     MatDialogModule,
     SharedModule,
     MatInputModule,

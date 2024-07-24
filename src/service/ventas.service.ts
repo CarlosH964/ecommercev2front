@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 
 export interface ItemApi {
   id: number;
-  objectId: number;
   name: string;
   description: string;
   customer: string;

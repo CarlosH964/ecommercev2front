@@ -1,16 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CartService } from 'src/service/cart.service';
-import { SharedModule } from 'src/shared/shared.module';
-import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymethodComponent } from '../paymethod/paymethod.component';
 
 @Component({
   selector: 'app-cart',
-  standalone: true,
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  imports: [SharedModule, CommonModule]
 })
 export class CartComponent implements OnInit {
 

@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'validation',
-    loadChildren: () => import('./validation/validation.module').then(m => m.ValidationModule),
+    loadChildren: () => import('src/validation/validation.module').then(m => m.ValidationModule),
   },
   {
     path: 'admin',

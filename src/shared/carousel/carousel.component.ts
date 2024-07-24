@@ -8,10 +8,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class CarouselComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   slides = [
-    'https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp',
-    'https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp',
-    'https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp',
-    'https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp'
+    'https://dlcdnwebimgs.asus.com/gain/7E72AA02-81DF-43E9-B823-CB3DD30A2413',
+    'https://lzd-img-global.slatic.net/g/p/518794fda461319627b5431524af3027.png_2200x2200q80.png_.webp',
+    'https://cdn.cs.1worldsync.com/syndication/mediaserverredirect/7b324aca2aebba07c7d26fe54e6172e0/original.jpg',
   ];
   slideInterval: any;
 

@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ItemsService } from 'src/service/items.service';
 import { HttpClient } from '@angular/common/http';
@@ -8,8 +7,6 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-modal-edit',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './modal-edit.component.html',
   styleUrls: ['./modal-edit.component.css']
 })
@@ -25,7 +22,6 @@ export class ModalEditComponent {
   ) {
     this.ObjectForm = this.fb.group({
       elementid: [data.Object.idItems],
-      elementobjectid: { value: data.Object.objectId, disabled: true },
       elementTittle: [data.Object.name],
       elementDescription: [data.Object.description],
       elementCustomer: [data.Object.customer],
@@ -59,7 +55,6 @@ export class ModalEditComponent {
   updatebject() {
     const updatedObj = {
       idItems: this.ObjectForm.getRawValue().elementid,
-      objectId: this.ObjectForm.getRawValue().elementobjectid,
       name: this.ObjectForm.value.elementTittle,
       description: this.ObjectForm.value.elementDescription,
       customer: this.ObjectForm.value.elementCustomer,
