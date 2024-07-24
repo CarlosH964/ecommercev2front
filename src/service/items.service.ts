@@ -20,11 +20,11 @@ export class ItemsService {
 
   constructor(private http: HttpClient) {}
 
-  getObjects(data?: any): Observable<any> {
+  getObjects(): Observable<any> {
     return this.http.get<any[]>(`${this.baseUrl}/Items/notdelete`);
   }
 
-  getObjectswithstock(data?: any): Observable<any> {
+  getObjectswithstock(): Observable<any> {
     return this.http.get<any[]>(`${this.baseUrl}/Items/instock`);
   }
 

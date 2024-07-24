@@ -2,16 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export interface ItemApi {
-  id: number;
-  name: string;
-  description: string;
-  customer: string;
-  price: number;
-  stock: number;
-  img: string;
-}
-
 @Injectable({
   providedIn: 'root',
 })

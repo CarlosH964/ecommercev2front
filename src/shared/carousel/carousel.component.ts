@@ -26,10 +26,6 @@ export class CarouselComponent implements OnInit, OnDestroy {
     return `-${this.currentIndex * 100}%`;
   }
 
-  prevSlide(): void {
-    this.currentIndex = (this.currentIndex > 0) ? this.currentIndex - 1 : this.slides.length - 1;
-  }
-
   nextSlide(): void {
     this.currentIndex = (this.currentIndex < this.slides.length - 1) ? this.currentIndex + 1 : 0;
   }
@@ -37,7 +33,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   startAutoSlide(): void {
     this.slideInterval = setInterval(() => {
       this.nextSlide();
-    }, 3000); // Cambia de slide cada 3 segundos
+    }, 3000); 
   }
 
   stopAutoSlide(): void {
