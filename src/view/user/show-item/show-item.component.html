@@ -13,7 +13,7 @@
         <p class="font-medium">{{ item.customer }}</p>
     </div>
     <div class="flex justify-between lg:gap-4 xl:gap-10">
-        <p class="lg:text-xl  xl:text-3xl">S/.{{ item.price }}</p>
+        <p class="lg:text-xl  xl:text-3xl">{{ item.price | currency:'S/.' }}</p>
         <p class="grid items-center border-2 px-4 rounded-xl">{{ item.stock }} - In Stock</p>
     </div>
     <div class="bg-black text-white rounded-xl font-bold text-center hover:cursor-pointer xl:mt-8" (click)="addToCart(item)">

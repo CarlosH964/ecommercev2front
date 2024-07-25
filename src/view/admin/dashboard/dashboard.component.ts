@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ItemsService, ItemApi } from 'src/service/items.service';
-import { ModalCreateComponent } from '../modal-create/modal-create.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ModalCreateComponent } from '../modal-create/modal-create.component';
 import { ModalEditComponent } from '../modal-edit/modal-edit.component';
 
 @Component({
@@ -12,6 +12,8 @@ import { ModalEditComponent } from '../modal-edit/modal-edit.component';
 export class DashboardComponent implements OnInit {
 
   element: ItemApi[] = [];
+  totalVentas: number = 0;
+  cantidadVentas: number = 0;
 
   constructor(private apiService: ItemsService) {}
 
@@ -23,6 +25,7 @@ export class DashboardComponent implements OnInit {
     this.apiService.getObjects().subscribe(
       (data) => {
         this.element = data;
+        this.calculateTotalVentas();
         console.log(this.element);
       },
       (error) => {
@@ -35,6 +38,10 @@ export class DashboardComponent implements OnInit {
     return item.price * item.stock;
   }
 
+  calculateTotalVentas(): void {
+    this.totalVentas = this.element.reduce((sum, item) => sum + this.calculateTotal(item), 0);
+  }
+  
   deleteObject(idItems: number): void {
     this.apiService.putIsDeleteObject(idItems).subscribe(
       () => {
@@ -47,23 +54,23 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  //Modal
+  // Modal
 
   readonly dialog = inject(MatDialog);
 
-  openCreateDialog(): void{
-    this.dialog.open(ModalCreateComponent,{
+  openCreateDialog(): void {
+    this.dialog.open(ModalCreateComponent, {
       width: 'fullscreen'
     }).afterClosed().subscribe(result => {
       console.log(result);
-      if(result){
+      if (result) {
         this.GetData();
       }
     });
   }
 
-  openEditDialog(Object: ItemApi): void{
-    const dialogedit = this.dialog.open(ModalEditComponent,{
+  openEditDialog(Object: ItemApi): void {
+    const dialogedit = this.dialog.open(ModalEditComponent, {
       width: 'fullscreen',
       data: { Object: { ...Object } }
     });
@@ -73,5 +80,4 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-
 }

@@ -16,4 +16,8 @@ export class VentasService {
   createVenta(venta: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/Ventas`, venta);
   }
+
+  getVentas(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/Ventas`);
+  }
 }

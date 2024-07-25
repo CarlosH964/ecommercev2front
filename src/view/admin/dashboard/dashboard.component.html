@@ -1,11 +1,23 @@
 <app-navbar></app-navbar>
 <div>
-  <div class="grid grid-cols-6 bg-gray-100 border-b-2 border-gray-200 w-full py-2">
-    <div class="text-center grid col-start-1 col-span-6 mt-14">
+  <div class="grid bg-gray-100 border-b-2 border-gray-200 w-full pt-20">
+    <div class="text-center flex justify-center mt-2 mb-10">
       <p class="font-bold text-3xl">Welcome to Dashboard! 😎</p>
     </div>
-    <div class="grid col-end-7 col-span-1 py-1 w-2/3 text-center hover:bg-black hover:text-white rounded-xl">
-      <p class="hover:cursor-pointer" (click)="openCreateDialog()">Add New Product</p>
+    <div class=" grid mx-auto px-40 bg-black text-white py-10 rounded-2xl">
+      <div class="flex justify-center mb-4">
+        <p class="text-3xl">Total Sales</p>
+      </div>
+      <div class="flex justify-center text-center">
+        <div class="grid">
+          <p class="text-lg text-gray-400">The total revenue generated from all sales.</p>
+          <p class="text-3xl">{{ totalVentas | currency:'S/.' }}</p>
+          <p class="text-lg text-gray-400">+12% from last month</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex text-center justify-end px-14 mt-20">
+      <p class="hover:cursor-pointer bg-green-200 hover:bg-black hover:text-white rounded-xl p-4" (click)="openCreateDialog()">Add New Product</p>
     </div>
   </div>
   <div>
@@ -21,7 +33,7 @@
       <p class="w-1/12">Actions</p>
     </div>
     <div *ngFor="let item of element">
-      <hr class="my-4">
+      <hr class="my-4" />
       <div class="flex justify-between text-center mx-8 gap-10 items-center">
         <p class="w-1/12">{{ item.idItems }}</p>
         <p class="w-2/12">{{ item.name }}</p>
@@ -29,13 +41,28 @@
         <p class="w-2/12">{{ item.customer }}</p>
         <p class="w-1/12">S/.{{ item.price }}</p>
         <p class="w-1/12">{{ item.stock }}</p>
-        <p class="w-1/12">S/.{{ calculateTotal(item) }}</p>
+        <p class="w-1/12">{{ calculateTotal(item) | currency:'S/.' }}</p>
         <p class="flex w-1/12 justify-center">
-          <img [src]="item.img" alt="Image" class="w-16 h-16 object-cover" *ngIf="item.img">
+          <img
+            [src]="item.img"
+            alt="Image"
+            class="w-16 h-16 object-cover"
+            *ngIf="item.img"
+          />
         </p>
         <div class="w-1/12 flex flex-col justify-center items-center gap-2">
-          <button class="bg-yellow-400 px-8 py-2 rounded-xl h-auto" (click)="openEditDialog(item)">Edit</button>
-          <button class="bg-red-400 px-8 py-2 rounded-xl h-auto" (click)="deleteObject(item.idItems)">Delete</button>
+          <button
+            class="bg-yellow-400 px-8 py-2 rounded-xl h-auto"
+            (click)="openEditDialog(item)"
+          >
+            Edit
+          </button>
+          <button
+            class="bg-red-400 px-8 py-2 rounded-xl h-auto"
+            (click)="deleteObject(item.idItems)"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
